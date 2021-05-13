@@ -24,7 +24,7 @@ const App = () => {
       {/* Usar el componente title */}
       <Title text={"Lista de amigos"} />
 
-      <div>
+      <div className="friends-list">
         <ol type="i">
           {listaAmigos.map((i) => (
             <li>{i.name}</li>
