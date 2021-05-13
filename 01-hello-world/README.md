@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# JSON
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+JSON significa Javascript Object Notation
 
-## Available Scripts
+Empieza siempre o por `{` (que correspondería a un objecto) o por `[` (que correspondería a un array)
 
-In the project directory, you can run:
+Notación estándar de un objeto de json
 
-### `yarn start`
+```javascript
+{
+    property: value,
+    property: value,
+}
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+por ejemplo, un objeto persona:
 
-### `yarn test`
+```javascript
+{
+    name: "Juan",
+    lastName: "López",
+    age: 34
+}
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
 
-### `yarn build`
+Cómo acceder a las propiedades:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+juan.name
+juan["name"]
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Object.keys(juan)
+(3) ["name", "lastName", "age"]0: "name"1: "lastName"2: "age"length: 3__proto__: Array(0)
+const namekey = "name"
+undefined
+juan[namekey]
+"Juan"
+juan.namekey
+undefined
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
 
-### `yarn eject`
+## Arrays en JSON
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+son entre corchetes: `[]`
+```javascript
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[1,2,3]
+(3) [1, 2, 3]0: 11: 22: 3length: 3__proto__: Array(0)
+[{name: "pepe"}, {name:"juan"}]
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Funciones de array
 
-## Learn More
+const numeros = [1,2,3,4,5]
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javascript
+numeros.forEach(
+    elemento => {
+        console.log("elemento", elemento)
+    })
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+numeros.map(
+    elemento => elemento*2)
+(5) [2, 4, 6, 8, 10]
 
-### Code Splitting
+numeros.map ( e => "el numero es "+e)
+(5) ["el numero es 1", "el numero es 2", "el numero es 3", "el numero es 4", "el numero es 5"]
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+listaAmigos.map(i => i.name + " tiene " + i.age + "años")
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
