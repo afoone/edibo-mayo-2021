@@ -18,7 +18,9 @@ const CommentsList = () => {
     <div className="comments-list">
       <div class="ui comments">
         <h3 class="ui dividing header">Comments</h3>
-        <CommentItem />
+            <CommentItem />
+            <CommentItem />
+            <CommentItem />   
       </div>
     </div>
   );
