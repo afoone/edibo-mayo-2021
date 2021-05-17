@@ -1,5 +1,7 @@
 .title {
-    background-color: red;
+    background: rgb(226,32,32);
+    background: linear-gradient(29deg, rgba(226,32,32,1) 7%, rgba(255,252,0,1) 100%);
+    border: 1px solid blue;
 }
 
 .title h1 {
