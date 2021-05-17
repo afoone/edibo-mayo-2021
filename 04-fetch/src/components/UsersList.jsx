@@ -49,7 +49,8 @@ class UsersList extends React.Component {
           {this.state.usuarios.map((item) => (
             <li key={item.id}>
               {item.name}{" "}
-              <button onClick={() => this.eliminarElemento(item.id)}>
+              <button onClick={
+                  () => this.eliminarElemento(item.id)}>
                 Eliminar
               </button>
             </li>
