@@ -6,14 +6,16 @@ export class Imagenes extends Component {
     super(props);
     this.state = {
       imagenes: [],
-      consulta: ""
+      consulta: "",
     };
   }
 
-  componentDidMount() {
+  buscar(busqueda) {
+    if (!busqueda) return;
     axios
       .get(
-        "https://api.unsplash.com/search/photos/?client_id=N4IxmojIOcsRn0NMD39tJwNIYJBhFDLUWJWO_1wpssU&query=beach"
+        "https://api.unsplash.com/search/photos/?client_id=N4IxmojIOcsRn0NMD39tJwNIYJBhFDLUWJWO_1wpssU&query=" +
+          busqueda
       )
       .then((res) =>
         this.setState({
@@ -22,17 +24,36 @@ export class Imagenes extends Component {
       );
   }
 
+  componentDidMount() {
+    this.buscar();
+  }
+
   render() {
     return (
       <div>
         <h3>Imágenes</h3>
         <div>
-            <input type="text" value={this.state.consulta} onChange={
-                e => this.setState({
-                    consulta: e.target.value
-                })
-            }></input>
-            <button>Buscar</button>
+          <input
+            type="text"
+            value={this.state.consulta}
+            onChange={(e) =>
+              this.setState({
+                consulta: e.target.value,
+              })
+            }
+          ></input>
+          <button onClick={() => this.buscar(this.state.consulta)}>
+            Buscar
+          </button>
+          {(this.state.consulta || this.state.imagenes.length > 0) && (
+            <button
+              onClick={() => {
+                this.setState({ consulta: "", imagenes: [] });
+              }}
+            >
+              Reset
+            </button>
+          )}
         </div>
         <div
           style={{
