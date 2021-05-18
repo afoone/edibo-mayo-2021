@@ -14,7 +14,7 @@ export class Imagenes extends Component {
     componentDidMount() {
         axios.get('https://api.unsplash.com/search/photos/?client_id=N4IxmojIOcsRn0NMD39tJwNIYJBhFDLUWJWO_1wpssU&query=beach').then(
             res => this.setState({
-                imagenes: res.data
+                imagenes: res.data.results
             })
         )
     }
@@ -23,6 +23,11 @@ export class Imagenes extends Component {
         return (
             <div>
                 Imagenes
+                {
+                    this.state.imagenes.map(
+                        imagen => <img src={imagen.urls.thumb}/>
+                    )
+                }
             </div>
         )
     }
