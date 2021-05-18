@@ -4,8 +4,9 @@ import UsersList from './components/UsersList'
 
 function App() {
   return <div className="app">
+      <CommentsList></CommentsList>
    <UsersList></UsersList>
-   <CommentsList></CommentsList>
+ 
   </div>;
 }
 

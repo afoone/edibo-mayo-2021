@@ -34,9 +34,7 @@ class UsersList extends React.Component {
   eliminarElemento = (id) => {
     console.log("usuarios", this.state.usuarios);
     this.setState({
-      usuarios: this.state.usuarios.filter(
-          elemento => elemento.id !== id
-      ),
+      usuarios: this.state.usuarios.filter((elemento) => elemento.id !== id),
     });
   };
 
@@ -45,7 +43,38 @@ class UsersList extends React.Component {
     return (
       <div className="users-list">
         <h3>Usuarios</h3>
-        <ol>
+
+        <table class="ui celled table unstackable">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>E-mail</th>
+              <th>Teléfono</th>
+              <th>Empresa</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.state.usuarios.map(
+                usuario => <tr>
+                <td>{usuario.name}</td>
+                <td>{usuario.email}</td>
+                <td>{usuario.phone}</td>
+                <td>{usuario.company.name}</td>
+                <td>
+                  <button onClick={()=>this.eliminarElemento(usuario.id)}>
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+              )
+            }
+ 
+          </tbody>
+        </table>
+
+        {/* <ol>
           {this.state.usuarios.map((item) => (
             <li key={item.id}>
               {item.name}{" "}
@@ -55,7 +84,7 @@ class UsersList extends React.Component {
               </button>
             </li>
           ))}
-        </ol>
+        </ol> */}
       </div>
     );
   }
