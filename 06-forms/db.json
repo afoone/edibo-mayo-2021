@@ -1,24 +1,19 @@
 {
-  "posts": [
+  "patients": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "name": "Sarah Connor",
+      "age": 25
     },
     {
-      "id": 2,
-      "title": "modified-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "name": "John Smith",
+      "age": 33,
+      "id": 2
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "Susan ",
+      "age": 25,
+      "id": 3
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
