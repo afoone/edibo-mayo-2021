@@ -1,0 +1,36 @@
+{
+  "doctors": [
+    {
+      "name": "ssdffdsffsdf",
+      "service": "asdfsdfsadfffffffff",
+      "id": 1
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "name": "Sarah Connor",
+      "age": 25
+    },
+    {
+      "name": "John Smith",
+      "age": 33,
+      "id": 2
+    },
+    {
+      "name": "Susan ",
+      "age": 25,
+      "id": 3
+    },
+    {
+      "name": "SDFDS",
+      "age": 0,
+      "id": 4
+    },
+    {
+      "name": "D",
+      "age": 0,
+      "id": 5
+    }
+  ]
+}
