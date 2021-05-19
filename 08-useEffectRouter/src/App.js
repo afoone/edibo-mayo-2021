@@ -1,6 +1,7 @@
 import React from "react";
 import DoctorForm from "./components/DoctorForm";
 import PatientForm from "./components/PatientForm";
+import PatientList from './components/PatientList'
 import Main from "./components/Main";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -24,7 +25,8 @@ function App() {
         </div>
         <Route exact path="/" component={Main} />
         <Route exact path="/doctors" component={DoctorForm} />
-        <Route path="/patients" component={PatientForm} />
+        <Route exact path="/patients" component={PatientList} />
+        <Route exact path="/patients/new" component={PatientForm} />
       </Router>
     </div>
   );

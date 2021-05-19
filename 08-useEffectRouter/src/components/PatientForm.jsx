@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 class PatientForm extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class PatientForm extends React.Component {
       age: 0,
       errors: {},
       message: "",
+      redirect: false,
     };
   }
 
@@ -32,12 +34,16 @@ class PatientForm extends React.Component {
       name: this.state.name,
       age: parseInt(this.state.age),
     };
-    axios.post("http://localhost:4000/patients/", objeto).then((res) =>
-      this.setState({
-        message: `Paciente ${res.data.name} guardado satisfactoriamente` ,
-        name: "",
-        age: 0
-      })
+    axios.post("http://localhost:4000/patients/", objeto).then(
+      (res) =>
+        this.setState({
+          redirect: true,
+        })
+      // this.setState({
+      //   message: `Paciente ${res.data.name} guardado satisfactoriamente` ,
+      //   name: "",
+      //   age: 0
+      // })
     );
   }
 
@@ -59,6 +65,7 @@ class PatientForm extends React.Component {
   render() {
     return (
       <div className="patient-form">
+        {this.state.redirect && <Redirect to="/patients" />}
         <h4 className="ui dividing header">New Patient</h4>
         <div
           className={
@@ -103,6 +110,16 @@ class PatientForm extends React.Component {
             onClick={() => this.save()}
           >
             Submit
+          </button>
+          <button
+            className="ui negative button"
+            onClick={() =>
+              this.setState({
+                redirect: true,
+              })
+            }
+          >
+            Cancel
           </button>
         </div>
       </div>
