@@ -1,35 +1,54 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./PatientList.css";
 
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/patients/")
+      .get("http://localhost:4000/patients/?q=" + search)
       .then((res) => setPatients(res.data));
-  }, []);
+  }, [search]);
 
   return (
     <div className="patient-list">
       <div>
         <h2>Patients</h2>
-        <Link to="/patients/new">
-          <button className="ui primary button">New Patient</button>
-        </Link>
+        <div className="button-container">
+          <div class="ui icon input">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <i class="circular search icon"></i>
+          </div>
+          <Link to="/patients/new">
+            <button className="ui primary button">New Patient</button>
+          </Link>
+        </div>
       </div>
 
       <table class="ui celled table">
         <thead>
           <th>Name</th>
           <th>Age</th>
+          <th></th>
         </thead>
         <tbody>
           {patients.map((p) => (
             <tr>
               <td>{p.name}</td>
               <td>{p.age}</td>
+              <td>
+                <Link to={`/patients/${p.id}/`}>
+                  <button className="ui button primary mini basic">See</button>
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>
