@@ -52,6 +52,7 @@ const Board = ({ cols }) => {
       )
       .then((res) => {
         const response = [];
+        // Array.from({length: cols*cols}).map((i, indes) => )
         for (let index = 0; index < cols * cols; index++) {
           response.push({
             id: index,
