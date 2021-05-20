@@ -13,6 +13,13 @@ const PatientList = () => {
       .then((res) => setPatients(res.data));
   }, [search]);
 
+  const deletePatient = (id) => {
+    console.log("borrando ", id);
+    axios
+      .delete(`http://localhost:4000/patients/${id}/`)
+      .then(() => setPatients(patients.filter((i) => i.id !== id)));
+  };
+
   return (
     <div className="patient-list">
       <div>
@@ -48,6 +55,12 @@ const PatientList = () => {
                 <Link to={`/patients/${p.id}/`}>
                   <button className="ui button primary mini basic">See</button>
                 </Link>
+                <button
+                  className="ui button negative mini basic"
+                  onClick={() => deletePatient(p.id)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
