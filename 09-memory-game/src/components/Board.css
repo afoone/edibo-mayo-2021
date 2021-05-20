@@ -1,0 +1,6 @@
+.board {
+    display: grid;
+    gap: 1rem;
+    justify-content: start;
+    padding: 2rem;
+}
