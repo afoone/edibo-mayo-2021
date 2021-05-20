@@ -33,11 +33,19 @@ const DoctorForm = () => {
         </div>
         <div className="ui field">
           <label>Service</label>
-          <input
+          {/* <input
             type="text"
             value={service}
             onChange={(e) => setService(e.target.value)}
-          />
+          /> */}
+
+          <select test-id="select-service"  value={service}
+            onChange={(e) => setService(e.target.value)}>
+            <option value=""></option>
+            <option value="traumatologia">Traumatología</option>
+            <option value="cardiologia">Cardiología</option>
+            <option value="oncologia">Oncología</option>
+          </select>
         </div>
       </div>
       <button className="ui primary button" onClick={save}>

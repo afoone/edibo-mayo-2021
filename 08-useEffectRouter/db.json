@@ -19,6 +19,21 @@
       "name": "Gomez",
       "service": "Trauma",
       "id": 4
+    },
+    {
+      "name": "dr pepito",
+      "service": "traumatologia",
+      "id": 5
+    },
+    {
+      "name": "dddd",
+      "service": "",
+      "id": 6
+    },
+    {
+      "name": "dr. perez",
+      "service": "traumatologia",
+      "id": 7
     }
   ],
   "patients": [
@@ -56,6 +71,16 @@
       "name": "JUANITO",
       "age": 56,
       "id": 7
+    },
+    {
+      "name": "SDF",
+      "age": 0,
+      "id": 8
+    },
+    {
+      "name": "JOHN SMITH",
+      "age": 0,
+      "id": 9
     }
   ]
 }
