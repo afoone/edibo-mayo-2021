@@ -61,6 +61,11 @@ const PatientList = () => {
                 >
                   Delete
                 </button>
+                <Link to={`/patients/${p.id}/edit`}>
+                  <button className="ui button positive mini basic">
+                    Edit
+                  </button>
+                </Link>
               </td>
             </tr>
           ))}

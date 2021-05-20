@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 
 class PatientForm extends React.Component {
   constructor(props) {
@@ -12,6 +12,23 @@ class PatientForm extends React.Component {
       message: "",
       redirect: false,
     };
+  }
+
+  componentDidMount() {
+    const {id} = this.props.match.params;
+    if (id) {
+      axios.get(`http://localhost:4000/patients/${id}/`).then(
+        res => {
+          this.setState(
+            {
+              name: res.data.name,
+              age: res.data.age
+            }
+          )
+        }
+      )
+    }
+    console.log("id", id)
   }
 
   onChangeName(e) {
@@ -30,21 +47,27 @@ class PatientForm extends React.Component {
 
   save() {
     if (!this.validate()) return;
+    const {id} = this.props.match.params;
     const objeto = {
+      id,
       name: this.state.name,
       age: parseInt(this.state.age),
     };
+    if (id) {
+      axios.put(`http://localhost:4000/patients/${id}/`, objeto).then(
+        (res) =>
+          this.setState({
+            redirect: true,
+          })
+      );
+    }
+    else {
     axios.post("http://localhost:4000/patients/", objeto).then(
       (res) =>
         this.setState({
           redirect: true,
         })
-      // this.setState({
-      //   message: `Paciente ${res.data.name} guardado satisfactoriamente` ,
-      //   name: "",
-      //   age: 0
-      // })
-    );
+    );} 
   }
 
   validate() {
@@ -63,6 +86,11 @@ class PatientForm extends React.Component {
   }
 
   render() {
+
+    console.log(this.props)
+
+    
+
     return (
       <div className="patient-form">
         {this.state.redirect && <Redirect to="/patients" />}
@@ -127,4 +155,4 @@ class PatientForm extends React.Component {
   }
 }
 
-export default PatientForm;
+export default withRouter(PatientForm);

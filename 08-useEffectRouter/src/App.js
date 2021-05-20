@@ -30,6 +30,7 @@ function App() {
         <Route exact path="/patients" component={PatientList} />
         <Route exact path="/patients/new" component={PatientForm} />
         <Route exact path="/patients/:id/" component={PatientDetail}/>
+        <Route exact path="/patients/:id/edit" component={PatientForm}/>
         </Switch>
       </Router>
     </div>
