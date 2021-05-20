@@ -43,16 +43,6 @@
       "age": 25
     },
     {
-      "name": "John Smith",
-      "age": 33,
-      "id": 2
-    },
-    {
-      "name": "Susan ",
-      "age": 25,
-      "id": 3
-    },
-    {
       "name": "JUANITO",
       "age": 56,
       "id": 7
@@ -66,6 +56,11 @@
       "id": 11,
       "name": "MR WAYNE 5",
       "age": 66
+    },
+    {
+      "name": "LOLA",
+      "age": 0,
+      "id": 12
     }
   ]
 }

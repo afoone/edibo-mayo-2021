@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./PatientList.css";
+import PatientListItem, { PatientListItemSkeleton } from "./PatientListItem";
 
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
@@ -14,10 +15,17 @@ const PatientList = () => {
   }, [search]);
 
   const deletePatient = (id) => {
-    console.log("borrando ", id);
     axios
       .delete(`http://localhost:4000/patients/${id}/`)
       .then(() => setPatients(patients.filter((i) => i.id !== id)));
+  };
+
+  const createSkeleton = (n) => {
+    const response = [];
+    for (let index = 0; index < n; index++) {
+      response.push(<PatientListItemSkeleton />);
+    }
+    return response
   };
 
   return (
@@ -47,27 +55,9 @@ const PatientList = () => {
           <th></th>
         </thead>
         <tbody>
+          {patients.length<1 && createSkeleton(10)}
           {patients.map((p) => (
-            <tr>
-              <td>{p.name}</td>
-              <td>{p.age}</td>
-              <td>
-                <Link to={`/patients/${p.id}/`}>
-                  <button className="ui button primary mini basic">See</button>
-                </Link>
-                <button
-                  className="ui button negative mini basic"
-                  onClick={() => deletePatient(p.id)}
-                >
-                  Delete
-                </button>
-                <Link to={`/patients/${p.id}/edit`}>
-                  <button className="ui button positive mini basic">
-                    Edit
-                  </button>
-                </Link>
-              </td>
-            </tr>
+            <PatientListItem p={p} deleteOne={deletePatient} />
           ))}
         </tbody>
       </table>
