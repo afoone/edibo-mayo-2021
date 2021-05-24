@@ -6,11 +6,25 @@ import arrayShuffle from "array-shuffle";
 
 const Board = ({ cols }) => {
   const [cards, setCards] = useState([]);
+  const [completed, setCompleted] = useState(false)
 
   const checkCorrect = (newcards) => {
     const visibles = newcards.filter((e) => e.visible);
     console.log(visibles);
     return visibles.length === 2 && visibles[0].image === visibles[1].image;
+  };
+
+  const boardComplete = () => {
+    // iterative version
+    // let accumulate = true
+    // for (let index = 0; index < cards.length; index++) {
+    //   const element = cards[index];
+    //   console.log(element.completed)
+    //   accumulate = accumulate && element.completed
+    // }
+    // return accumulated
+    // functional version
+    return cards.reduce((acc, curr) => acc && curr.completed, true);
   };
 
   const setVisible = (id) => {
@@ -75,11 +89,15 @@ const Board = ({ cols }) => {
   };
 
   return (
-    <div className="board" style={{ gridTemplateColumns: templateGrid }}>
-      {cards.map((e) => (
-        <Card element={e} setVisible={setVisible} />
-      ))}
-    </div>
+    <>
+      {boardComplete() && <h2>Enhorabuena, lo has conseguido</h2>}
+      <div className="board" style={{ gridTemplateColumns: templateGrid }}>
+        {cards.map((e) => (
+          <Card element={e} setVisible={setVisible} />
+        ))}
+        <button onClick={() => boardComplete()}>check</button>
+      </div>
+    </>
   );
 };
 
