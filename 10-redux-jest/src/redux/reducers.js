@@ -8,19 +8,18 @@
 
 // es práctica habitual inicializar el estado en el reducer
 
-export const counterReducer = (
-  state = {
-    npartidas: 0,
-  },
-  action
-) => {
+export const initialState = {
+  npartidas: 0,
+};
 
- switch (action.type) {
-     case "partidaTerminada":
-         // Sumar uno a la propiedad npartidas de mi store
-         break;
- 
-     default:
-         return state
- }
+export const counterReducer = (state = initialState, action = {}) => {
+  switch (action.type) {
+    case "partidaTerminada":
+      return {
+        ...state,
+        npartidas: state.npartidas + 1,
+      };
+    default:
+      return state;
+  }
 };
