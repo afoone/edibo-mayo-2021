@@ -6,7 +6,7 @@ import arrayShuffle from "array-shuffle";
 
 const Board = ({ cols }) => {
   const [cards, setCards] = useState([]);
-  const [completed, setCompleted] = useState(false)
+  const [clicks, setClicks] = useState(0);
 
   const checkCorrect = (newcards) => {
     const visibles = newcards.filter((e) => e.visible);
@@ -15,19 +15,12 @@ const Board = ({ cols }) => {
   };
 
   const boardComplete = () => {
-    // iterative version
-    // let accumulate = true
-    // for (let index = 0; index < cards.length; index++) {
-    //   const element = cards[index];
-    //   console.log(element.completed)
-    //   accumulate = accumulate && element.completed
-    // }
-    // return accumulated
-    // functional version
     return cards.reduce((acc, curr) => acc && curr.completed, true);
   };
 
   const setVisible = (id) => {
+  //  if(cards[id].completed) return
+    setClicks(clicks + 1);
     const nVisibles = cards.reduce(
       (acc, curr) => (curr.visible ? acc + 1 : acc),
       0
@@ -66,7 +59,6 @@ const Board = ({ cols }) => {
       )
       .then((res) => {
         const response = [];
-        // Array.from({length: cols*cols}).map((i, indes) => )
         for (let index = 0; index < cols * cols; index++) {
           response.push({
             id: index,
@@ -85,17 +77,23 @@ const Board = ({ cols }) => {
             };
           })
         );
+        setClicks(0)
       });
   };
 
   return (
     <>
-      {boardComplete() && <h2>Enhorabuena, lo has conseguido</h2>}
+      {boardComplete() && (
+        <div>
+          <h2>Enhorabuena, lo has conseguido</h2>
+          <button onClick={() => createCards(2)}>Nueva partida</button>
+        </div>
+      )}
+      <div>Número de clicks = {clicks}</div>
       <div className="board" style={{ gridTemplateColumns: templateGrid }}>
         {cards.map((e) => (
           <Card element={e} setVisible={setVisible} />
         ))}
-        <button onClick={() => boardComplete()}>check</button>
       </div>
     </>
   );
