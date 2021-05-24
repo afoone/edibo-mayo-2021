@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import "./Board.css";
 import Card from "./Card";
 import axios from "axios";
 import arrayShuffle from "array-shuffle";
+import {terminarPartida} from '../redux/actions'
 
 const Board = ({ cols }) => {
   const [cards, setCards] = useState([]);
   const [clicks, setClicks] = useState(0);
+  const [complete, setComplete] = useState(false);
+
+  const dispatch = useDispatch();
 
   const checkCorrect = (newcards) => {
     const visibles = newcards.filter((e) => e.visible);
@@ -15,11 +20,19 @@ const Board = ({ cols }) => {
   };
 
   const boardComplete = () => {
-    return cards.reduce((acc, curr) => acc && curr.completed, true);
+    const isBoardComplete =
+      cards.length > 0
+        ? cards.reduce((acc, curr) => acc && curr.completed, true)
+        : false;
+    if (isBoardComplete) {
+      // lance la acción de "partidaTermida"
+      dispatch(terminarPartida(clicks));
+    }
+    return isBoardComplete;
   };
 
   const setVisible = (id) => {
-  //  if(cards[id].completed) return
+    //  if(cards[id].completed) return
     setClicks(clicks + 1);
     const nVisibles = cards.reduce(
       (acc, curr) => (curr.visible ? acc + 1 : acc),
@@ -50,6 +63,12 @@ const Board = ({ cols }) => {
     createCards(cols);
   }, []);
 
+  useEffect(() => {
+    if (boardComplete()) {
+      setComplete(true);
+    }
+  }, [cards]);
+
   const templateGrid = "auto ".repeat(cols);
 
   const createCards = (cols) => {
@@ -77,13 +96,13 @@ const Board = ({ cols }) => {
             };
           })
         );
-        setClicks(0)
+        setClicks(0);
       });
   };
 
   return (
     <>
-      {boardComplete() && (
+      {complete && (
         <div>
           <h2>Enhorabuena, lo has conseguido</h2>
           <button onClick={() => createCards(2)}>Nueva partida</button>

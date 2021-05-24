@@ -8,13 +8,15 @@
 
 // es práctica habitual inicializar el estado en el reducer
 
+import {PARTIDA_TERMINADA_ACTION} from './actions'
+
 export const initialState = {
   npartidas: 0,
 };
 
 export const counterReducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case "partidaTerminada":
+    case PARTIDA_TERMINADA_ACTION:
       return {
         ...state,
         npartidas: state.npartidas + 1,

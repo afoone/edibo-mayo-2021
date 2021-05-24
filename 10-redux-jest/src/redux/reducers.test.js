@@ -1,4 +1,5 @@
 import { counterReducer, initialState } from "./reducers";
+import {PARTIDA_TERMINADA_ACTION} from './actions'
 
 test("si le paso un estado y una acción que no conoce, quiero que me devuelva el estado sin modificar", () => {
   expect(
@@ -24,7 +25,7 @@ test ("si le paso una partida real  quiero que el estado se incremente en 1" , (
         {
             npartidas: 27
         }, {
-            type: "partidaTerminada",
+            type: PARTIDA_TERMINADA_ACTION,
             payload: {
                 clicks: 78
             }
@@ -39,7 +40,7 @@ test ("si le paso una partida real  quiero que el estado se incremente en 1" , (
         {
             npartidas: 27
         }, {
-            type: "partidaTerminada",
+            type: PARTIDA_TERMINADA_ACTION,
             payload: {}
         }
     )).toStrictEqual (
@@ -52,7 +53,7 @@ test ("si le paso una partida real  quiero que el estado se incremente en 1" , (
         {
             npartidas: 0
         }, {
-            type: "partidaTerminada"
+            type: PARTIDA_TERMINADA_ACTION
         }
     )).toStrictEqual (
         {
@@ -70,7 +71,7 @@ test("cuando me suma una partida nueva no me tiene que eliminar el resto de prop
                     otracosa: "hola"
                 },
                 {
-                    type: "partidaTerminada"
+                    type: PARTIDA_TERMINADA_ACTION
                 }
             )
         ).toStrictEqual(

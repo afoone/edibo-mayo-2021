@@ -1,13 +1,16 @@
-import Header from './components/Header';
-import MemoryGame from './components/MemoryGame'
-
+import Header from "./components/Header";
+import MemoryGame from "./components/MemoryGame";
+import { Provider } from "react-redux";
+import store from './redux/store'
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <MemoryGame/>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Header />
+        <MemoryGame />
+      </div>
+    </Provider>
   );
 }
 
