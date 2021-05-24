@@ -9,7 +9,8 @@ const Header = () => {
 
     // leer redux
 
-  const npartidas = useSelector((state) => state.npartidas);
+  const npartidas = useSelector((state) => state.counter.npartidas);
+  const highScore = useSelector(state => state.record.highScore)
 
   return (
     <div className="header">
@@ -17,7 +18,7 @@ const Header = () => {
         <div class="header item">Memory Game</div>
         <div class="right item">
           <div>
-            <div>High Score:</div>
+            <div>High Score: {highScore}</div>
             <div>Rounds: {npartidas}</div>
           </div>
         </div>

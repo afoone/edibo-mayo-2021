@@ -8,7 +8,7 @@
 
 // es práctica habitual inicializar el estado en el reducer
 
-import {PARTIDA_TERMINADA_ACTION} from './actions'
+import { PARTIDA_TERMINADA_ACTION } from "./actions";
 
 export const initialState = {
   npartidas: 0,
@@ -21,6 +21,24 @@ export const counterReducer = (state = initialState, action = {}) => {
         ...state,
         npartidas: state.npartidas + 1,
       };
+    default:
+      return state;
+  }
+};
+
+export const recordInitialState = {};
+
+export const recordReducer = (state = recordInitialState, action = {}) => {
+  switch (action.type) {
+    case PARTIDA_TERMINADA_ACTION:
+      return {
+        ...state,
+        highScore:
+          !action.payload.nclicks || action.payload.nclicks > state.highScore
+            ? state.highScore
+            : action.payload.nclicks,
+      };
+
     default:
       return state;
   }
